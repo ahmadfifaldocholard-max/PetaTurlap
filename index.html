@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipe Turlap</title>
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+    <label class="btn" style="display:block; text-align:center; cursor:pointer;">
+        1. Pilih File PMTiles (Offline)
+        <input type="file" id="fileInput" style="display:none;">
+    </label>
+    
+    <div id="map"></div>
+    <button id="btnMulaiRekam" class="btn">2. Mulai Rekam Jalur (GPS)</button>
+    <button id="btnHentiRekam" class="btn btn-stop" style="display:none;">Hentikan Rekam</button>
+    <div id="log">Log sistem dimulai...<br></div>
+    
+    <!-- Tangkap error SEBELUM memuat ES Module -->
+    <script>
+        function logError(msg) {
+            const logDiv = document.getElementById('log');
+            if (logDiv) logDiv.innerHTML = `<span style="color:red">${msg}</span><br>` + logDiv.innerHTML;
+        }
+        window.onerror = function(m, s, l) { logError(`JS error: ${m} (baris ${l})`); };
+        window.addEventListener('unhandledrejection', function(e) { logError(`Promise error: ${e.reason}`); });
+    </script>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
