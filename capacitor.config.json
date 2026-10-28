@@ -1,0 +1,8 @@
+{
+  "appId": "id.ac.unhas.petaturlap",
+  "appName": "Peta Turlap",
+  "webDir": "dist",
+  "android": {
+    "useLegacyBridge": true
+  }
+}
