@@ -16,6 +16,7 @@
     "@capacitor-community/sqlite": "^8.1.1",
     "@capacitor/android": "^8.5.3",
     "@capacitor/core": "^8.5.3",
+    "@capacitor/geolocation": "^8.2.4",
     "jeep-sqlite": "^2.8.0",
     "jeep-sqlite-current-sqljs": "^2.9.2",
     "maplibre-gl": "^4.7.1",
