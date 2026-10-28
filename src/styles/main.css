@@ -1,301 +1,99 @@
-:root {
-  --bg-dark: #121814;
-  --surface: #1e2620;
-  --surface-card: #28332b;
-  --primary: #2e7d32;
-  --primary-accent: #4caf50;
-  --text-main: #ffffff;
-  --text-sub: #a5d6a7;
-  --danger: #e53935;
-  --warning: #f57c00;
-  --nav-height: 60px;
-  --header-height: 50px;
+@import './tokens.css';
+
+/* Reset Dasar */
+* { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
+  user-select: none; 
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  user-select: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-body {
-  background-color: var(--bg-dark);
+/* Layout Utama */
+body { 
+  font-family: system-ui, -apple-system, sans-serif; 
+  background: var(--bg-light); 
   color: var(--text-main);
-  height: 100vh;
-  width: 100vw;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height untuk HP */
   overflow: hidden;
-  position: relative;
-}
-
-/* Kunci utama agar elemen sembunyi */
-.hidden {
-  display: none !important;
 }
 
 /* Header */
 .app-header {
-  height: var(--header-height);
-  background: var(--surface);
+  height: 50px;
+  background: var(--primary);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 10;
   flex-shrink: 0;
+  z-index: 10;
+}
+.brand { 
+  display: flex; 
+  align-items: center; 
+  gap: 8px; 
+  font-weight: bold; 
+}
+.badge-offline { 
+  background: var(--accent); 
+  font-size: 10px; 
+  padding: 2px 6px; 
+  border-radius: 4px; 
+}
+.gps-badge { 
+  font-size: 12px; 
+  background: rgba(0,0,0,0.2); 
+  padding: 4px 8px; 
+  border-radius: 12px; 
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.brand-title {
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--text-main);
-}
-
-.badge-offline {
-  background: var(--primary);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.gps-badge {
-  font-size: 0.75rem;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-weight: 600;
-}
-
-.status-waiting { background: rgba(245, 124, 0, 0.2); color: var(--warning); }
-.status-active { background: rgba(76, 175, 80, 0.2); color: var(--primary-accent); }
-
-/* Main Map Layout */
+/* Peta */
 .map-wrapper {
   flex: 1;
   position: relative;
-  width: 100%;
-  height: calc(100vh - var(--header-height) - var(--nav-height));
-  overflow: hidden;
+  background: #e0e0e0; /* Warna placeholder sebelum peta muncul */
 }
-
 #map {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; 
+  left: 0; 
+  right: 0; 
   bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: #1a221b;
-}
-
-/* Floating Controls */
-.map-controls {
-  position: absolute;
-  right: 16px;
-  bottom: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 5;
-}
-
-.fab-btn {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--surface);
-  color: var(--text-main);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.fab-btn:active {
-  transform: scale(0.95);
-  background: var(--primary);
-}
-
-/* Tracking Dock Overlay */
-.tracking-dock {
-  position: absolute;
-  left: 16px;
-  right: 76px;
-  bottom: 24px;
-  background: rgba(30, 38, 32, 0.92);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  padding: 8px 12px;
-  z-index: 5;
-}
-
-.dock-info {
-  display: flex;
-  justify-content: space-between;
-}
-
-.info-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.info-item .label {
-  font-size: 0.6rem;
-  color: var(--text-sub);
-  text-transform: uppercase;
-}
-
-.info-item .value {
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-/* Tab Panels (Modal Bottom Sheet) */
-.tab-panel {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: var(--surface);
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-  border-top: 2px solid var(--primary-accent);
-  padding: 16px;
-  z-index: 20;
-  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.7);
-  max-height: 65vh;
-  overflow-y: auto;
-}
-
-.panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 8px;
-}
-
-.panel-header h3 {
-  font-size: 0.95rem;
-  color: var(--text-sub);
-}
-
-.btn-close-panel {
-  background: none;
-  border: none;
-  color: #aaa;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.panel-body label {
-  display: block;
-  font-size: 0.75rem;
-  color: var(--text-sub);
-  margin-top: 8px;
-  margin-bottom: 4px;
-}
-
-.panel-body input, .panel-body select, .panel-body textarea {
-  width: 100%;
-  padding: 10px;
-  background: var(--bg-dark);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
-  color: #fff;
-  font-size: 0.85rem;
-}
-
-.panel-desc {
-  font-size: 0.8rem;
-  color: #ccc;
-  margin-bottom: 12px;
-}
-
-.btn-action {
-  width: 100%;
-  padding: 11px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-top: 10px;
-  cursor: pointer;
-}
-
-.btn-action.primary { background: var(--primary); color: #fff; }
-.btn-action.success { background: #2e7d32; color: #fff; }
-.btn-action.danger { background: var(--danger); color: #fff; }
-.btn-action.secondary { background: #37474f; color: #fff; }
-.btn-action.outline { background: transparent; border: 1px solid var(--primary-accent); color: var(--primary-accent); }
-
-.section-box {
-  background: var(--surface-card);
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.section-box h4 {
-  font-size: 0.8rem;
-  margin-bottom: 6px;
-  color: var(--text-sub);
-}
-
-.file-info {
-  font-size: 0.75rem;
-  color: #aaa;
-  margin-top: 6px;
-}
-
-.btn-group {
-  display: flex;
-  gap: 8px;
 }
 
 /* Bottom Nav */
 .bottom-nav {
-  height: var(--nav-height);
-  background: var(--surface);
+  height: 60px;
+  background: var(--surface-light);
   display: flex;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 10;
+  border-top: 1px solid #ddd;
   flex-shrink: 0;
+  z-index: 10;
 }
-
 .nav-item {
   flex: 1;
   background: none;
   border: none;
-  color: #777;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  color: #757575;
   cursor: pointer;
+  min-height: var(--touch-min); /* Sesuai aturan sentuh 48px */
 }
-
-.nav-item.active {
-  color: var(--primary-accent);
+.nav-item.active { 
+  color: var(--primary); 
 }
-
-.nav-icon { font-size: 1.1rem; }
-.nav-label { font-size: 0.68rem; font-weight: 600; }
+.nav-icon { 
+  font-size: 20px; 
+  margin-bottom: 2px; 
+}
+.nav-label { 
+  font-size: 11px; 
+  font-weight: 500; 
+}

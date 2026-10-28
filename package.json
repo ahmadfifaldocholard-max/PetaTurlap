@@ -18,7 +18,7 @@
     "@capacitor/core": "^8.5.3",
     "jeep-sqlite": "^2.8.0",
     "jeep-sqlite-current-sqljs": "^2.9.2",
-    "maplibre-gl": "4.7.1",
+    "maplibre-gl": "^4.7.1",
     "pmtiles": "^4.5.0",
     "protomaps-themes-base": "^4.5.0",
     "sql.js": "~1.12.0"

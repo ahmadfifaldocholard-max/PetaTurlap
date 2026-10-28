@@ -3,16 +3,22 @@ jeepSqlite(window);
 
 import './styles/main.css'; 
 import { initDatabase } from './modules/db/index.js';
+import { initMap } from './modules/map/index.js';
 
 async function startApp() {
   console.log("Memulai Peta Turlap...");
   
   try {
     await initDatabase();
-    document.getElementById('app').innerText = "Database siap. Menunggu UI...";
+    
+    // Sembunyikan teks loading, ganti dengan peta
+    document.getElementById('app')?.remove(); 
+    
+    // Inisialisasi Peta
+    initMap();
+    
   } catch (error) {
-    document.getElementById('app').innerText = "Gagal memuat database. Cek Console (F12).";
-    console.error(error);
+    console.error("Gagal start:", error);
   }
 }
 

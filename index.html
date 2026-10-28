@@ -6,7 +6,41 @@
   <title>Peta Turlap</title>
 </head>
 <body>
-  <div id="app">Memuat aplikasi...</div>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="brand">
+      <span class="brand-title">Peta Turlap</span>
+      <span class="badge-offline">OFFLINE</span>
+    </div>
+    <div id="gps-status" class="gps-badge">GPS: -</div>
+  </header>
+
+  <!-- Main Area (Peta & Panel) -->
+  <main class="map-wrapper">
+    <div id="map"></div>
+    <!-- Panel UI akan masuk ke sini nanti -->
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-tab="map">
+      <span class="nav-icon">🗺️</span>
+      <span class="nav-label">Peta</span>
+    </button>
+    <button class="nav-item" data-tab="data">
+      <span class="nav-icon">📁</span>
+      <span class="nav-label">Data</span>
+    </button>
+    <button class="nav-item" data-tab="rekam">
+      <span class="nav-icon">⏺</span>
+      <span class="nav-label">Rekam</span>
+    </button>
+    <button class="nav-item" data-tab="pengaturan">
+      <span class="nav-icon">⚙️</span>
+      <span class="nav-label">Atur</span>
+    </button>
+  </nav>
+
   <jeep-sqlite></jeep-sqlite>
   <script type="module" src="/src/main.js"></script>
 </body>
