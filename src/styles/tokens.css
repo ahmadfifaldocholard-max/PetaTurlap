@@ -1,0 +1,12 @@
+:root {
+  --primary: #00796b;
+  --primary-light: #4db6ac;
+  --accent: #4caf50;
+  --danger: #d32f2f;
+  --warning: #f57c00;
+  --bg-light: #f5f5f5;
+  --surface-light: #ffffff;
+  --text-main: #212121;
+  --radius: 12px;
+  --touch-min: 48px;
+}
